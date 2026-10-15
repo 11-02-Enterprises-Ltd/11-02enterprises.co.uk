@@ -116,12 +116,34 @@ a {
       #c9a45d2e,
       transparent 22%
     ),
+    radial-gradient(
+      circle at 24% 78%,
+      #11704f35,
+      transparent 38%
+    ),
     linear-gradient(
       135deg,
       #031d15,
       #063b2a 58%,
       #04291e
     );
+
+  background-size: 140% 140%, 150% 150%, 100% 100%;
+  background-position: 100% 0%, 0% 100%, center;
+  background-repeat: no-repeat;
+
+  animation: hero-background-drift 22s ease-in-out infinite;
+}
+
+@keyframes hero-background-drift {
+  0%,
+  100% {
+    background-position: 100% 0%, 0% 100%, center;
+  }
+
+  50% {
+    background-position: 0% 100%, 100% 0%, center;
+  }
 }
 
 .hero::after {
@@ -276,13 +298,30 @@ h2 em {
 
   border: 1px solid #ffffff24;
 
-  background: #ffffff0a;
+  background-color: #ffffff0a;
+  background-image:
+    radial-gradient(circle at 15% 20%, #c9a45d18, transparent 48%),
+    radial-gradient(circle at 85% 80%, #ffffff0a, transparent 45%);
+  background-size: 150% 150%;
+  background-position: 0% 0%, 100% 100%;
 
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 
   display: grid;
   place-items: center;
+
+  animation:
+    orbit-panel-drift 8s ease-in-out infinite,
+    orbit-background-drift 14s ease-in-out infinite;
+
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.hero-orbit:hover {
+  border-color: #e0c27e66;
+
+  background-color: #ffffff0d;
 }
 
 .ring {
@@ -296,6 +335,8 @@ h2 em {
   height: 110px;
 
   transform: rotate(20deg);
+
+  animation: ring-drift 12s ease-in-out infinite;
 }
 
 .r2 {
@@ -305,6 +346,9 @@ h2 em {
   border-color: #ffffff20;
 
   transform: rotate(-20deg);
+
+  animation-name: ring-counter-drift;
+  animation-duration: 15s;
 }
 
 .core {
@@ -327,6 +371,14 @@ h2 em {
   font: 32px/0.7 "Playfair Display";
 
   box-shadow: 0 0 50px #c9a45d24;
+
+  animation: core-breathe 5s ease-in-out infinite;
+
+  transition: box-shadow 0.3s ease;
+}
+
+.core:hover {
+  box-shadow: 0 0 65px #c9a45d55;
 }
 
 .core small {
@@ -344,6 +396,8 @@ h2 em {
   background: #e0c27e;
 
   box-shadow: 0 0 15px #e0c27e;
+
+  animation: dot-pulse 2.8s ease-in-out infinite;
 }
 
 .d1 {
@@ -354,11 +408,15 @@ h2 em {
 .d2 {
   right: 38px;
   top: 190px;
+
+  animation-delay: 0.8s;
 }
 
 .d3 {
   bottom: 90px;
   left: 80px;
+
+  animation-delay: 1.6s;
 }
 
 .hero-orbit p {
@@ -375,10 +433,91 @@ h2 em {
   line-height: 1.7;
 
   letter-spacing: 0.12em;
+
+  animation: orbit-copy-drift 5s ease-in-out infinite;
 }
 
 .hero-orbit strong {
   color: #fff;
+}
+
+@keyframes orbit-panel-drift {
+  0%,
+  100% {
+    transform: translateY(-45%);
+  }
+
+  50% {
+    transform: translateY(calc(-45% - 5px));
+  }
+}
+
+@keyframes orbit-background-drift {
+  0%,
+  100% {
+    background-position: 0% 0%, 100% 100%;
+  }
+
+  50% {
+    background-position: 100% 100%, 0% 0%;
+  }
+}
+
+@keyframes ring-drift {
+  0%,
+  100% {
+    transform: rotate(20deg);
+  }
+
+  50% {
+    transform: rotate(25deg);
+  }
+}
+
+@keyframes ring-counter-drift {
+  0%,
+  100% {
+    transform: rotate(-20deg);
+  }
+
+  50% {
+    transform: rotate(-25deg);
+  }
+}
+
+@keyframes core-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes orbit-copy-drift {
+  0%,
+  100% {
+    transform: translateY(2px);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
 }
 
 .scroll {
@@ -386,14 +525,53 @@ h2 em {
 
   z-index: 2;
 
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
   bottom: 28px;
   left: 6vw;
 
-  color: #ffffff66;
+  color: #ffffffc7;
 
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: 600;
 
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
+
+  transition: color 0.2s ease;
+}
+
+.scroll:hover {
+  color: #fff;
+}
+
+.scroll b {
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid #e0c27e99;
+  border-radius: 50%;
+
+  color: #e0c27e;
+  font-size: 16px;
+  font-weight: 400;
+
+  animation: scroll-cue 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+
+  50% {
+    transform: translateY(3px);
+  }
 }
 
 /* =========================
@@ -657,8 +835,31 @@ h2 {
       #c9a45d24,
       transparent 45%
     );
+  background-size: 135% 135%;
+  background-position: 45% 45%;
 
   overflow: hidden;
+
+  animation: visual-background-drift 16s ease-in-out infinite;
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.visual:hover {
+  border-color: #e0c27e55;
+
+  box-shadow: inset 0 0 70px #c9a45d0d;
+}
+
+@keyframes visual-background-drift {
+  0%,
+  100% {
+    background-position: 45% 45%;
+  }
+
+  50% {
+    background-position: 55% 55%;
+  }
 }
 
 .visual > label {
@@ -672,6 +873,8 @@ h2 {
   font-size: 9px;
 
   letter-spacing: 0.2em;
+
+  animation: label-drift 4s ease-in-out infinite;
 }
 
 .market-logo {
@@ -693,6 +896,14 @@ h2 {
   color: #e0c27e;
 
   box-shadow: 0 0 80px #c9a45d1f;
+
+  animation: market-mark-float 6s ease-in-out infinite;
+
+  transition: box-shadow 0.3s ease;
+}
+
+.market-logo:hover {
+  box-shadow: 0 0 100px #c9a45d44;
 }
 
 .market-logo small {
@@ -720,6 +931,18 @@ h2 {
   border: 1px solid #ffffff20;
 
   font-size: 25px;
+
+  animation: food-orb-float 5s ease-in-out infinite;
+
+  transition: background-color 0.3s ease, border-color 0.3s ease, filter 0.3s ease;
+}
+
+.orb:hover {
+  background: #ffffff18;
+
+  border-color: #e0c27e88;
+
+  filter: brightness(1.15);
 }
 
 .food1 {
@@ -730,11 +953,48 @@ h2 {
 .food2 {
   right: 16%;
   top: 38%;
+
+  animation-delay: 0.7s;
 }
 
 .food3 {
   left: 17%;
   bottom: 20%;
+
+  animation-delay: 1.4s;
+}
+
+@keyframes market-mark-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes food-orb-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes label-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
 }
 
 .gold-text {
@@ -1231,6 +1491,33 @@ footer nav {
   opacity: 1;
 
   transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .scroll b,
+  .hero-orbit,
+  .ring,
+  .core,
+  .dot,
+  .hero-orbit p,
+  .visual,
+  .visual > label,
+  .market-logo,
+  .orb {
+    animation: none;
+  }
+
+  .hero-orbit,
+  .core,
+  .market-logo,
+  .orb {
+    transform: none;
+  }
+
+  .hero-orbit {
+    transform: translateY(-45%);
+  }
 }
 
 /* =========================
