@@ -317,7 +317,7 @@ For business, partnership, investment or general enquiries:
 
 **11-02 Enterprises Ltd**
 
-📧 `email here`
+📧 info@11-02enterprises.co.uk
 
 ---
 
