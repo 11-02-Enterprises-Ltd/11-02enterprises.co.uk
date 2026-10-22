@@ -1393,6 +1393,24 @@ h2 {
   margin-top: 8px;
 }
 
+.contact-form .contact-privacy-notice {
+  margin: 0;
+  color: #3d4d46;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.contact-privacy-notice a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-privacy-notice a:focus-visible {
+  outline: 2px solid #063b2a;
+  outline-offset: 3px;
+}
+
 .back-link {
   color: #063b2a;
 
@@ -1461,6 +1479,8 @@ footer small {
 
 footer nav {
   display: flex;
+
+  flex-wrap: wrap;
 
   justify-content: center;
 
